@@ -4,6 +4,7 @@ import numpy as np
 import cv2
 import pytesseract
 
+from matplotlib import pyplot as plt
 
 FLANN_INDEX_KDTREE = 0
 MIN_MATCH_COUNT = 10
