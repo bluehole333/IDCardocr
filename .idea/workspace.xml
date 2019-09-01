@@ -2,19 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="25a43b00-fdf2-4694-97b6-96499223190b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/img/name_mask.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/img/name_mask_1280.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/img/name_mask_1920.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/img/num.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tessdata/idnum.traineddata" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tessdata/nation.traineddata" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tessdata/sex.traineddata" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test_img/test2.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test_img/test3.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test_img/test4.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ocr.py" beforeDir="false" afterPath="$PROJECT_DIR$/ocr.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -24,7 +13,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ocr.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="335">
@@ -32,6 +21,15 @@
               <folding>
                 <element signature="e#0#11#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="601">
+              <caret line="105" column="6" selection-start-line="105" selection-start-column="6" selection-end-line="105" selection-end-column="6" />
             </state>
           </provider>
         </entry>
@@ -87,6 +85,7 @@
         <option value="$PROJECT_DIR$/sift.py" />
         <option value="$PROJECT_DIR$/main.py" />
         <option value="$PROJECT_DIR$/ocr.py" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -220,19 +219,19 @@
       <option name="presentableId" value="Default" />
       <updated>1567231665376</updated>
       <workItem from="1567231666749" duration="6003000" />
-      <workItem from="1567243822941" duration="10859000" />
+      <workItem from="1567243822941" duration="11128000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="16862000" />
+    <option name="totallyTimeSpent" value="17131000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="806" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Favorites" order="0" side_tool="true" />
-      <window_info content_ui="combo" id="Project" order="1" visible="true" weight="0.24964234" />
+      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.24964234" />
       <window_info id="Structure" order="2" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Database Changes" order="0" />
       <window_info anchor="bottom" id="Terminal" order="1" />
@@ -365,6 +364,13 @@
           <folding>
             <element signature="e#0#11#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="601">
+          <caret line="105" column="6" selection-start-line="105" selection-start-column="6" selection-end-line="105" selection-end-column="6" />
         </state>
       </provider>
     </entry>
