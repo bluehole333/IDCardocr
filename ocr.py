@@ -26,8 +26,26 @@ class Ocr(object):
         id_card = {
             'name': self.find_name(gray_img, org_img),
             'address': self.find_address(gray_img, org_img),
+            'sex': self.find_sex(gray_img, org_img),
         }
         print(id_card)
+
+    def find_sex(self, crop_gray, crop_org):
+        template = cv2.UMat(cv2.imread('img/sex_mask_%s.jpg' % pixel_x, 0))
+        w, h = cv2.UMat.get(template).shape[::-1]
+        res = cv2.matchTemplate(crop_gray, template, cv2.TM_CCOEFF_NORMED)
+        min_val, max_val, min_loc, max_loc = cv2.minMaxLoc(res)
+        top_left = (max_loc[0] + w, max_loc[1] - int(20 * x))
+        bottom_right = (top_left[0] + int(300 * x), top_left[1] + int(300 * x))
+        result = cv2.UMat.get(crop_org)[top_left[1] - 10:bottom_right[1], top_left[0] - 10:bottom_right[0]]
+        cv2.rectangle(crop_gray, top_left, bottom_right, 255, 2)
+
+        _, _, red = cv2.split(cv2.UMat(result))
+        red = cv2.UMat(red)
+        red = cv2.adaptiveThreshold(red, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY, 151, 50)
+        red = self.img_resize(red, 150)
+        
+        return self.get_result_vary_length(red, 'chi_sim', config='--psm 10')
 
     def find_address(self, crop_gray, crop_org):
         template = cv2.UMat(cv2.imread('img/address_mask_%s.jpg' % pixel_x, 0))
@@ -37,9 +55,6 @@ class Ocr(object):
         top_left = (max_loc[0] + w, max_loc[1] - int(20 * x))
         bottom_right = (top_left[0] + int(1700 * x), top_left[1] + int(650 * x))
         result = cv2.UMat.get(crop_org)[top_left[1] - 10:bottom_right[1], top_left[0] - 10:bottom_right[0]]
-        print(bottom_right)
-        print(top_left[1] - 10, bottom_right[1], top_left[0] - 10, bottom_right[0])
-
         cv2.rectangle(crop_gray, top_left, bottom_right, 255, 2)
 
         return self.get_address(cv2.UMat(result))
