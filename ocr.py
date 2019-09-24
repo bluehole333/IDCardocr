@@ -44,7 +44,7 @@ class Ocr(object):
         red = cv2.UMat(red)
         red = cv2.adaptiveThreshold(red, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY, 151, 50)
         red = self.img_resize(red, 150)
-        
+
         return self.get_result_vary_length(red, 'chi_sim', config='--psm 10')
 
     def find_address(self, crop_gray, crop_org):
