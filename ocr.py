@@ -12,78 +12,7 @@ x = 1280.00 / 3840.00
 pixel_x = int(x * 3840)
 
 
-class FindName(threading.Thread):
-    def __init__(self):
-        threading.Thread.__init__(self)
-        self.name = ''
-
-    def run(self):
-        time.sleep(5)
-        self.name = '测试一下'
-
-    @property
-    def result(self):
-        return self.name
-
-
-class FindIdNumber(threading.Thread):
-    def __init__(self):
-        threading.Thread.__init__(self)
-        self.id_number = ''
-
-    def run(self):
-        time.sleep(5)
-        self.id_number = '测试一下id_number'
-
-    @property
-    def result(self):
-        return self.id_number
-
-
 class Ocr(object):
-    def __init__(self, parse_img_name):
-        self.parse_img_name = parse_img_name
-
-    def go(self):
-        find_name = FindName()
-        find_id_number = FindIdNumber()
-
-        # 非多线程测试
-        # find_name.run()
-        # find_id_number.run()
-        # print(find_name.name)
-        # print(find_id_number.name)
-
-        # 多线程获取
-        for thread in [find_name, find_id_number]:
-            thread.start()
-
-        for thread in [find_name, find_id_number]:
-            thread.join()
-
-        print(find_name.result)
-        print(find_id_number.result)
-
-
-        # id_card = self.find_idcard()
-        # self.ocr(id_card)
-
-    def ocr(self, id_card):
-        """OCR 光学字符识别"""
-        gray_img, org_img = self.gray_img(id_card)
-
-        id_number = self.find_id_number(gray_img, org_img)
-        birthday = id_number[6:14]
-
-        id_card = {
-            'name': self.find_name(gray_img, org_img),
-            'address': self.find_address(gray_img, org_img),
-            'sex': self.find_sex(gray_img, org_img),
-            'id_number': id_number,
-            'birthday': birthday
-        }
-        print(id_card)
-
     def find_id_number(self, crop_gray, crop_org):
         template = cv2.UMat(cv2.imread('img/id_number_mask_%s.jpg' % pixel_x, 0))
         w, h = cv2.UMat.get(template).shape[::-1]
@@ -112,7 +41,7 @@ class Ocr(object):
         _, _, red = cv2.split(cv2.UMat(result))
         red = cv2.UMat(red)
         red = cv2.adaptiveThreshold(red, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY, 151, 50)
-        red = self.img_resize(red, 150)
+        red = img_resize(red, 150)
 
         return self.get_result_vary_length(red, 'chi_sim', config='--psm 10')
 
@@ -132,7 +61,7 @@ class Ocr(object):
         _, _, red = cv2.split(img)
         red = cv2.UMat(red)
         red = cv2.adaptiveThreshold(red, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY, 151, 50)
-        red = self.img_resize(red, 450)
+        red = img_resize(red, 450)
 
         return self.punc_filter(self.get_result_vary_length(red, 'chi_sim'))
 
@@ -140,7 +69,7 @@ class Ocr(object):
         _, _, red = cv2.split(img)
         red = cv2.UMat(red)
         red = cv2.adaptiveThreshold(red, 255, cv2.ADAPTIVE_THRESH_MEAN_C, cv2.THRESH_BINARY, 151, 50)
-        red = self.img_resize(red, 150)
+        red = img_resize(red, 150)
 
         return self.punc_filter(self.get_result_vary_length(red, 'chi_sim'))
 
@@ -185,12 +114,120 @@ class Ocr(object):
 
         return result
 
+    def show_img(self, img):
+        cv2.namedWindow("contours", 0)
+        cv2.resizeWindow("contours", 1600, 1200)
+        cv2.imshow("contours", img)
+        cv2.waitKey()
+
+    def find_name(self, crop_gray, crop_org):
+        template = cv2.UMat(cv2.imread('img/name_mask_%s.jpg' % pixel_x, 0))
+        w, h = cv2.UMat.get(template).shape[::-1]
+        res = cv2.matchTemplate(crop_gray, template, cv2.TM_CCOEFF_NORMED)
+        min_val, max_val, min_loc, max_loc = cv2.minMaxLoc(res)
+
+        top_left = (max_loc[0] + w, max_loc[1] - int(20 * x))
+        bottom_right = (top_left[0] + int(700 * x), top_left[1] + int(300 * x))
+
+        result = cv2.UMat.get(crop_org)[top_left[1] - 10:bottom_right[1], top_left[0] - 10:bottom_right[0]]
+        cv2.rectangle(crop_gray, top_left, bottom_right, 255, 2)
+
+        return self.get_name(cv2.UMat(result))
+
+
+class FindName(threading.Thread, Ocr):
+    def __init__(self, crop_gray, crop_org):
+        threading.Thread.__init__(self)
+        self.crop_gray = crop_gray
+        self.crop_org = crop_org
+        self.name = ''
+
+    def run(self):
+        template = cv2.UMat(cv2.imread('img/name_mask_%s.jpg' % pixel_x, 0))
+        w, h = cv2.UMat.get(template).shape[::-1]
+        res = cv2.matchTemplate(self.crop_gray, template, cv2.TM_CCOEFF_NORMED)
+        min_val, max_val, min_loc, max_loc = cv2.minMaxLoc(res)
+
+        top_left = (max_loc[0] + w, max_loc[1] - int(20 * x))
+        bottom_right = (top_left[0] + int(700 * x), top_left[1] + int(300 * x))
+
+        result = cv2.UMat.get(self.crop_org)[top_left[1] - 10:bottom_right[1], top_left[0] - 10:bottom_right[0]]
+        cv2.rectangle(self.crop_gray, top_left, bottom_right, 255, 2)
+
+        self.name = self.get_name(cv2.UMat(result))
+
+    @property
+    def result(self):
+        return self.name
+
+
+class FindIdNumber(threading.Thread):
+    def __init__(self, crop_gray, crop_org):
+        threading.Thread.__init__(self)
+        self.crop_gray = crop_gray
+        self.crop_org = crop_org
+        self.id_number = ''
+
+    def run(self):
+        time.sleep(5)
+        self.id_number = '测试一下id_number'
+
+    @property
+    def result(self):
+        return self.id_number
+
+
+class IDCard(object):
+    def __init__(self, parse_img_name):
+        self.parse_img_name = parse_img_name
+
+    def get_result(self):
+        id_card = self.find_idcard()
+        gray_img, org_img = get_gray_img(id_card)
+
+        find_name = FindName(gray_img, org_img)
+        find_id_number = FindIdNumber(gray_img, org_img)
+
+        # 非多线程测试
+        # find_name.run()
+        # find_id_number.run()
+        # print(find_name.result)
+        # print(find_id_number.result)
+        # return
+
+        # 多线程
+        data = [find_name, find_id_number]
+        for thread in data:
+            thread.start()
+
+        for thread in data:
+            thread.join()
+
+        id_card = {
+            'name': find_name.result,
+            'id_number': find_id_number.result,
+        }
+        print(id_card)
+
+        #
+        # id_number = self.find_id_number(gray_img, org_img)
+        # birthday = id_number[6:14]
+        #
+        # id_card = {
+        #     'name': self.find_name(gray_img, org_img),
+        #     'address': self.find_address(gray_img, org_img),
+        #     'sex': self.find_sex(gray_img, org_img),
+        #     'id_number': id_number,
+        #     'birthday': birthday
+        # }
+        # print(id_card)
+
     def find_idcard(self):
         # imread 读取图片 格式为BGR  IMREAD_GRAYSCALE 以灰度读取一张图片
-        mask_img = self.img_resize(cv2.UMat(cv2.imread(MASK_IMG_NAME, cv2.IMREAD_GRAYSCALE)), 640)
+        mask_img = img_resize(cv2.UMat(cv2.imread(MASK_IMG_NAME, cv2.IMREAD_GRAYSCALE)), 640)
 
-        parse_img = self.img_resize(cv2.UMat(cv2.imread(self.parse_img_name, cv2.IMREAD_GRAYSCALE)), 1920)
-        img_org = self.img_resize(cv2.UMat(cv2.imread(self.parse_img_name)), 1920)
+        parse_img = img_resize(cv2.UMat(cv2.imread(self.parse_img_name, cv2.IMREAD_GRAYSCALE)), 1920)
+        img_org = img_resize(cv2.UMat(cv2.imread(self.parse_img_name)), 1920)
 
         sift = cv2.xfeatures2d.SIFT_create()
         # 特征点检测
@@ -224,43 +261,25 @@ class Ocr(object):
 
         return result_img
 
-    def img_resize(self, imggray, dwidth):
-        crop = imggray
-        size = crop.get().shape
-        height = size[0]
-        width = size[1]
-        height = height * dwidth / width
-        crop = cv2.resize(src=crop, dsize=(dwidth, int(height)), interpolation=cv2.INTER_CUBIC)
 
-        return crop
+def img_resize(imggray, dwidth):
+    crop = imggray
+    size = crop.get().shape
+    height = size[0]
+    width = size[1]
+    height = height * dwidth / width
+    crop = cv2.resize(src=crop, dsize=(dwidth, int(height)), interpolation=cv2.INTER_CUBIC)
 
-    def show_img(self, img):
-        cv2.namedWindow("contours", 0)
-        cv2.resizeWindow("contours", 1600, 1200)
-        cv2.imshow("contours", img)
-        cv2.waitKey()
+    return crop
 
-    def gray_img(self, org_img):
-        # 图片尺寸 (410, 640, 3)
-        height, width, color = cv2.UMat.get(org_img).shape
-        height = int(height * 3840 * x / width)
 
-        # 拉伸原图尺寸与模板一致
-        org_img = cv2.resize(src=org_img, dsize=(int(3840 * x), height), interpolation=cv2.INTER_CUBIC)
-        _gray_img = cv2.cvtColor(org_img, cv2.COLOR_BGR2GRAY)
+def get_gray_img(org_img):
+    # 图片尺寸 (410, 640, 3)
+    height, width, color = cv2.UMat.get(org_img).shape
+    height = int(height * 3840 * x / width)
 
-        return _gray_img, org_img
+    # 拉伸原图尺寸与模板一致
+    org_img = cv2.resize(src=org_img, dsize=(int(3840 * x), height), interpolation=cv2.INTER_CUBIC)
+    _gray_img = cv2.cvtColor(org_img, cv2.COLOR_BGR2GRAY)
 
-    def find_name(self, crop_gray, crop_org):
-        template = cv2.UMat(cv2.imread('img/name_mask_%s.jpg' % pixel_x, 0))
-        w, h = cv2.UMat.get(template).shape[::-1]
-        res = cv2.matchTemplate(crop_gray, template, cv2.TM_CCOEFF_NORMED)
-        min_val, max_val, min_loc, max_loc = cv2.minMaxLoc(res)
-
-        top_left = (max_loc[0] + w, max_loc[1] - int(20 * x))
-        bottom_right = (top_left[0] + int(700 * x), top_left[1] + int(300 * x))
-
-        result = cv2.UMat.get(crop_org)[top_left[1] - 10:bottom_right[1], top_left[0] - 10:bottom_right[0]]
-        cv2.rectangle(crop_gray, top_left, bottom_right, 255, 2)
-
-        return self.get_name(cv2.UMat(result))
+    return _gray_img, org_img
