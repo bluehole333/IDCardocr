@@ -2,7 +2,7 @@
 <module version="4">
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$" />
-    <orderEntry type="jdk" jdkName="Python 3.6.5 virtualenv at ~/virtualenvs/py36" jdkType="Python SDK" />
+    <orderEntry type="jdk" jdkName="Python 3.7 (py37)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
   <component name="TestRunnerService">
