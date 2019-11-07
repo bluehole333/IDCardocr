@@ -7,4 +7,4 @@ if __name__ == "__main__":
     ocr = Ocr('test_img/test2.jpg')
     ocr.go()
     endtime = datetime.datetime.now()
-    print((endtime - starttime).seconds)
+    print("运行时间:", (endtime - starttime).seconds)

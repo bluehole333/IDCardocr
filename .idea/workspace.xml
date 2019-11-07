@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="25a43b00-fdf2-4694-97b6-96499223190b" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/img/idnum_mask.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/img/id_number_mask.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/img/idnum_mask_1280.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/img/id_number_mask_1280.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/img/idnum_mask_1920.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/img/id_number_mask_1920.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ocr.py" beforeDir="false" afterPath="$PROJECT_DIR$/ocr.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -19,8 +16,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/ocr.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="245">
-              <caret line="30" column="9" lean-forward="true" selection-start-line="30" selection-start-column="9" selection-end-line="30" selection-end-column="9" />
+            <state relative-caret-position="293">
+              <caret line="66" column="8" selection-start-line="66" selection-start-column="8" selection-end-line="66" selection-end-column="8" />
               <folding>
                 <element signature="e#0#11#0" expanded="true" />
               </folding>
@@ -29,28 +26,22 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$USER_HOME$/Desktop/idcardocr-master/findidcard.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="12" column="30" lean-forward="true" selection-start-line="12" selection-start-column="30" selection-end-line="12" selection-end-column="30" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
+            <state relative-caret-position="102">
+              <caret line="8" column="37" lean-forward="true" selection-start-line="8" selection-start-column="37" selection-end-line="8" selection-end-column="37" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$USER_HOME$/Desktop/idcardocr-master/idcardocr.py">
+        <entry file="file://$USER_HOME$/Desktop/iDcardDistinguish-master/main/OCR_Img.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="141">
-              <caret line="400" column="4" selection-start-line="400" selection-start-column="4" selection-end-line="411" selection-end-column="37" />
+            <state relative-caret-position="296">
+              <caret line="302" column="20" lean-forward="true" selection-start-line="302" selection-start-column="20" selection-end-line="302" selection-end-column="20" />
+              <folding>
+                <element signature="e#8495#10387#0" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -75,12 +66,14 @@
       <find>hist_equal</find>
       <find>--psm 6</find>
       <find>chi_sim</find>
-      <find>find_id_number</find>
       <find>--psm</find>
       <find>cv2.UMat.get(org_img)</find>
       <find>gray_img</find>
-      <find>show_i</find>
       <find>find_idnum</find>
+      <find>show_i</find>
+      <find>find_id_number</find>
+      <find>print</find>
+      <find>def run</find>
     </findStrings>
     <replaceStrings>
       <replace>show_img(</replace>
@@ -97,8 +90,8 @@
         <option value="$PROJECT_DIR$/sift.py" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$USER_HOME$/Desktop/ai.py" />
-        <option value="$PROJECT_DIR$/main.py" />
         <option value="$USER_HOME$/Desktop/Test6.py" />
+        <option value="$PROJECT_DIR$/main.py" />
         <option value="$PROJECT_DIR$/ocr.py" />
       </list>
     </option>
@@ -278,12 +271,12 @@
       <workItem from="1567243822941" duration="11128000" />
       <workItem from="1569477641687" duration="1100000" />
       <workItem from="1570117517705" duration="336000" />
-      <workItem from="1573099718302" duration="3776000" />
+      <workItem from="1573099718302" duration="4675000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="22343000" />
+    <option name="totallyTimeSpent" value="23242000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1" y="23" width="1440" height="806" extended-state="6" />
@@ -313,7 +306,7 @@
     </layout>
     <layout-to-restore>
       <window_info id="Favorites" order="0" side_tool="true" />
-      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.26037195" />
+      <window_info content_ui="combo" id="Project" order="1" weight="0.26037195" />
       <window_info id="Structure" order="2" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Database Changes" order="0" />
       <window_info anchor="bottom" id="Terminal" order="1" />
@@ -323,7 +316,7 @@
       <window_info anchor="bottom" id="Docker" order="5" show_stripe_button="false" />
       <window_info anchor="bottom" id="Message" order="6" />
       <window_info anchor="bottom" id="Find" order="7" />
-      <window_info anchor="bottom" id="Run" order="8" visible="true" weight="0.32913166" />
+      <window_info active="true" anchor="bottom" id="Run" order="8" visible="true" weight="0.32913166" />
       <window_info anchor="bottom" id="Debug" order="9" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="10" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="11" weight="0.4" />
@@ -339,7 +332,7 @@
     <option name="version" value="1" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/IDCardocr$main.coverage" NAME="main Coverage Results" MODIFIED="1573104034011" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/IDCardocr$main.coverage" NAME="main Coverage Results" MODIFIED="1573104962177" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/IDCardocr$go.coverage" NAME="go Coverage Results" MODIFIED="1567241878314" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/IDCardocr$ai.coverage" NAME="ai Coverage Results" MODIFIED="1570117682464" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$USER_HOME$/Desktop" />
     <SUITE FILE_PATH="coverage/IDCardocr$Test6.coverage" NAME="Test6 Coverage Results" MODIFIED="1573102922776" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$USER_HOME$/Desktop" />
@@ -399,13 +392,6 @@
     <entry file="file://$PROJECT_DIR$/test_img/test.jpg">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$USER_HOME$/Desktop/iDcardDistinguish-master/main/OCR_Img.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="310">
-          <caret line="329" column="24" lean-forward="true" selection-start-line="329" selection-start-column="24" selection-end-line="329" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/Library/Caches/PyCharm2019.1/python_stubs/1898206804/cv2/cv2/UMat.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="298">
@@ -415,13 +401,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/test_img/test2.jpg">
       <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$USER_HOME$/Desktop/idcardocr-master/findidcard.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="12" column="30" lean-forward="true" selection-start-line="12" selection-start-column="30" selection-end-line="12" selection-end-column="30" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$USER_HOME$/Desktop/Test6.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -436,24 +415,41 @@
     <entry file="file://$PROJECT_DIR$/img/id_number_mask_1280.jpg">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/main.py">
+    <entry file="file://$USER_HOME$/Desktop/idcardocr-master/idcardocr.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
+        <state relative-caret-position="464">
+          <caret line="390" column="30" lean-forward="true" selection-start-line="390" selection-start-column="30" selection-end-line="390" selection-end-column="30" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/Desktop/idcardocr-master/idcardocr.py">
+    <entry file="file://$USER_HOME$/Desktop/idcardocr-master/findidcard.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="141">
-          <caret line="400" column="4" selection-start-line="400" selection-start-column="4" selection-end-line="411" selection-end-column="37" />
+        <state relative-caret-position="187">
+          <caret line="14" column="37" lean-forward="true" selection-start-line="14" selection-start-column="37" selection-end-line="14" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="8" column="37" lean-forward="true" selection-start-line="8" selection-start-column="37" selection-end-line="8" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Desktop/iDcardDistinguish-master/main/OCR_Img.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="296">
+          <caret line="302" column="20" lean-forward="true" selection-start-line="302" selection-start-column="20" selection-end-line="302" selection-end-column="20" />
+          <folding>
+            <element signature="e#8495#10387#0" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/ocr.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="245">
-          <caret line="30" column="9" lean-forward="true" selection-start-line="30" selection-start-column="9" selection-end-line="30" selection-end-column="9" />
+        <state relative-caret-position="293">
+          <caret line="66" column="8" selection-start-line="66" selection-start-column="8" selection-end-line="66" selection-end-column="8" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
           </folding>

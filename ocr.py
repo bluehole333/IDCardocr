@@ -2,6 +2,7 @@ import time
 import re
 import numpy as np
 import cv2
+import threading
 import pytesseract
 
 FLANN_INDEX_KDTREE = 0
@@ -11,23 +12,75 @@ x = 1280.00 / 3840.00
 pixel_x = int(x * 3840)
 
 
+class FindName(threading.Thread):
+    def __init__(self):
+        threading.Thread.__init__(self)
+        self.name = ''
+
+    def run(self):
+        time.sleep(5)
+        self.name = '测试一下'
+
+    @property
+    def result(self):
+        return self.name
+
+
+class FindIdNumber(threading.Thread):
+    def __init__(self):
+        threading.Thread.__init__(self)
+        self.id_number = ''
+
+    def run(self):
+        time.sleep(5)
+        self.id_number = '测试一下id_number'
+
+    @property
+    def result(self):
+        return self.id_number
+
+
 class Ocr(object):
     def __init__(self, parse_img_name):
         self.parse_img_name = parse_img_name
 
     def go(self):
-        id_card = self.find_idcard()
-        self.ocr(id_card)
+        find_name = FindName()
+        find_id_number = FindIdNumber()
+
+        # 非多线程测试
+        # find_name.run()
+        # find_id_number.run()
+        # print(find_name.name)
+        # print(find_id_number.name)
+
+        # 多线程获取
+        for thread in [find_name, find_id_number]:
+            thread.start()
+
+        for thread in [find_name, find_id_number]:
+            thread.join()
+
+        print(find_name.result)
+        print(find_id_number.result)
+
+
+        # id_card = self.find_idcard()
+        # self.ocr(id_card)
 
     def ocr(self, id_card):
         """OCR 光学字符识别"""
         gray_img, org_img = self.gray_img(id_card)
 
+        id_number = self.find_id_number(gray_img, org_img)
+        birthday = id_number[6:14]
+
         id_card = {
             'name': self.find_name(gray_img, org_img),
             'address': self.find_address(gray_img, org_img),
             'sex': self.find_sex(gray_img, org_img),
-            'id_number': self.find_id_number(gray_img, org_img),
+            'id_number': id_number,
+            'birthday': birthday
         }
         print(id_card)
 
