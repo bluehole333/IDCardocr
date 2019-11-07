@@ -32,7 +32,7 @@ class Ocr(object):
         print(id_card)
 
     def find_id_number(self, crop_gray, crop_org):
-        template = cv2.UMat(cv2.imread('img/idnum_mask_%s.jpg' % pixel_x, 0))
+        template = cv2.UMat(cv2.imread('img/id_number_mask_%s.jpg' % pixel_x, 0))
         w, h = cv2.UMat.get(template).shape[::-1]
         res = cv2.matchTemplate(crop_gray, template, cv2.TM_CCOEFF_NORMED)
         min_val, max_val, min_loc, max_loc = cv2.minMaxLoc(res)
@@ -43,10 +43,8 @@ class Ocr(object):
 
         _, _, red = cv2.split(cv2.UMat(result))
         red = cv2.UMat(red)
-        red = cv2.adaptiveThreshold(red, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY, 151, 50)
-        red = self.img_resize(red, 150)
 
-        return self.get_result_vary_length(red, 'chi_sim', config='--psm 10')
+        return self.get_result_vary_length(red, 'eng', '--psm 8 ')
 
     def find_sex(self, crop_gray, crop_org):
         template = cv2.UMat(cv2.imread('img/sex_mask_%s.jpg' % pixel_x, 0))
