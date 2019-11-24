@@ -177,6 +177,22 @@ class FindIdNumber(threading.Thread):
         return self.id_number
 
 
+class FindSex(threading.Thread):
+    def __init__(self, crop_gray, crop_org):
+        threading.Thread.__init__(self)
+        self.crop_gray = crop_gray
+        self.crop_org = crop_org
+        self.id_number = ''
+
+    def run(self):
+        time.sleep(5)
+        self.id_number = '测试一下id_number'
+
+    @property
+    def result(self):
+        return self.id_number
+
+
 class IDCard(object):
     def __init__(self, parse_img_name):
         self.parse_img_name = parse_img_name
@@ -187,9 +203,10 @@ class IDCard(object):
 
         find_name = FindName(gray_img, org_img)
         find_id_number = FindIdNumber(gray_img, org_img)
+        find_sex = FindSex(gray_img, org_img)
 
         # 多线程
-        data = [find_name, find_id_number]
+        data = [find_name, find_id_number, find_sex]
         for thread in data:
             thread.start()
 
@@ -199,6 +216,7 @@ class IDCard(object):
         id_card = {
             'name': find_name.result,
             'id_number': find_id_number.result,
+            'sex': find_sex,
         }
         print(id_card)
 
