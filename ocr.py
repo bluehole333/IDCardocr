@@ -188,13 +188,6 @@ class IDCard(object):
         find_name = FindName(gray_img, org_img)
         find_id_number = FindIdNumber(gray_img, org_img)
 
-        # 非多线程测试
-        # find_name.run()
-        # find_id_number.run()
-        # print(find_name.result)
-        # print(find_id_number.result)
-        # return
-
         # 多线程
         data = [find_name, find_id_number]
         for thread in data:
